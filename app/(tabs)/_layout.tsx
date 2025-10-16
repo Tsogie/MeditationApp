@@ -1,35 +1,38 @@
-import { Tabs } from 'expo-router';
+
 import React from 'react';
+import { Tabs } from 'expo-router';
+import Themes from '@/constants/theme';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Entypo from '@expo/vector-icons/Entypo';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabsLaoyout = () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+   <Tabs 
+    screenOptions={{ 
+        headerShown: false, 
+        tabBarActiveTintColor: Themes.primary,}}>
+        <Tabs.Screen 
+            name="nature-meditate" 
+            options={{ 
+                tabBarLabel: "Meditate",
+                tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons 
+                    name="flower-tulip" 
+                    size={24} 
+                    color={color} />)
+            }}/>
+        <Tabs.Screen 
+        name="affirmations" 
+        options={{ 
+            tabBarLabel: "Affirmations",
+            tabBarIcon: ({ color }) => (
+            <Entypo 
+                name="open-book" 
+                size={24} 
+                color={color} />)
+            }}/>
+   </Tabs>
   );
-}
+};
+
+export default TabsLaoyout;
