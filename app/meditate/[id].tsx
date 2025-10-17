@@ -4,6 +4,7 @@ import meditationImages from '@/constants/meditation-images';
 import AppGradient from '@/components/AppGradient';
 import { router, useLocalSearchParams } from 'expo-router';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import CustomButton from '@/components/CustomButton';
 
 const Meditate = () => {
 
@@ -30,7 +31,12 @@ const Meditate = () => {
                           00:00
                         </Text>
                       </View>
-
+                    </View>
+                    <View className="mb-5">
+                      <CustomButton 
+                      title="Start meditation" 
+                      onPress={() => console.log("presses")}>
+                        </CustomButton>
                     </View>
                 </AppGradient>
         </ImageBackground>
