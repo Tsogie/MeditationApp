@@ -1,6 +1,24 @@
-import { Stack } from 'expo-router';
+import { Stack, SplashScreen } from 'expo-router';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+
+//this will prevent 
+//the splash screen from auto hide until loading all the font assets.
+SplashScreen.preventAutoHideAsync();
 
 export default function LootLayout(){
+
+   const [fontsLoaded, error] = useFonts({
+        "Roboto-Mono": require("../assets/fonts/RobotoMono-Regular.ttf"),
+    });
+
+    useEffect(() => {
+        if(error) throw error;
+        if(fontsLoaded) SplashScreen.hideAsync();
+    }, [fontsLoaded, error]);
+
+    if(!fontsLoaded) return null;
+    if(!fontsLoaded && !error) return null;
 
     return(
 
