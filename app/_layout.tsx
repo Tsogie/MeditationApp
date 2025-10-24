@@ -1,6 +1,7 @@
 import { Stack, SplashScreen } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import TimerProvider from '@/context/TimerContext';
 
 //this will prevent 
 //the splash screen from auto hide until loading all the font assets.
@@ -22,11 +23,17 @@ export default function LootLayout(){
 
     return(
 
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
-            <Stack.Screen name="index" options={{ headerShown: false}} />
-            <Stack.Screen name="meditate/[id]" options={{ headerShown: false}} />
+        <TimerProvider>
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
+                <Stack.Screen name="index" options={{ headerShown: false}} />
+                <Stack.Screen name="meditate/[id]" options={{ headerShown: false}} />
+                <Stack.Screen 
+                name="(modal)/adjust-meditation-duration" 
+                options={{ headerShown: false, presentation: "modal"}} />
 
-        </Stack>
+            </Stack>
+        </TimerProvider>
+       
     );
 }
